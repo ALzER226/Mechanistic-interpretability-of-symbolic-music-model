@@ -1,0 +1,15 @@
+name: thesis
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - tqdm
+  - typer
+  - pytest
+  - loguru
+  - numpy
+  - ipython
+  - jupyterlab
+  - notebook
+  - ruff
+prefix: /home/alzer/anaconda3/envs/thesis
