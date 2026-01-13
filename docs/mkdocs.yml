@@ -1,4 +1,23 @@
-site_name: Thesis
-# 
-site_author: Albert Torzewski
-# 
+site_name: Music Interpret
+theme:
+  name: mkdocs
+
+nav:
+  - Home: index.md
+  - Scripts:
+      - Activation Extraction: cli/activation_extraction.md
+      - Preprocessing: cli/preprocess.md
+      - Training: cli/train.md
+  - Implementation:
+      - Model Adapters: api/model_adapters.md
+      - Activations: api/activations.md
+      - Modeling: api/modeling.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: numpy
+            show_source: false

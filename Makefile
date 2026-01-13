@@ -2,30 +2,31 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_NAME = thesis-Albert-Torzewski
-PYTHON_VERSION = 3.13
+PROJECT_NAME = music_interpret
+PYTHON_VERSION = 3.9
 PYTHON_INTERPRETER = python
+MMT_DIR = test
+MMT_REPO = https://github.com/salu133445/mmt.git
 
 #################################################################################
 # COMMANDS                                                                      #
 #################################################################################
 
+## Initialize the project set up
+.PHONY: init
+init: clone-mmt create_environment
+	@echo "Project initialized."
 
 ## Install Python dependencies
 .PHONY: requirements
 requirements:
-	$(PYTHON_INTERPRETER) -m pip install -U pip
-	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
-	
-
-
+	conda env update --name $(PROJECT_NAME) --file environment.yml --prune
 
 ## Delete all compiled Python files
 .PHONY: clean
 clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
-
 
 ## Lint using ruff (use `make format` to do formatting)
 .PHONY: lint
@@ -39,35 +40,22 @@ format:
 	ruff check --fix
 	ruff format
 
-
-
-## Run tests
-.PHONY: test
-test:
-	python -m pytest tests
-
-
 ## Set up Python interpreter environment
 .PHONY: create_environment
 create_environment:
-	
-	conda create --name $(PROJECT_NAME) python=$(PYTHON_VERSION) -y
+	conda env create --name $(PROJECT_NAME) -f environment.yml
 	
 	@echo ">>> conda env created. Activate with:\nconda activate $(PROJECT_NAME)"
-	
 
-
-
-#################################################################################
-# PROJECT RULES                                                                 #
-#################################################################################
-
-
-## Make dataset
-.PHONY: data
-data: requirements
-	$(PYTHON_INTERPRETER) thesis/dataset.py
-
+## Clone base mmt project
+.PHONY: clone-mmt
+clone-mmt:
+	@if [ -d "$(MMT_DIR)" ]; then \
+		echo "MMT repo already exists at $(MMT_DIR)"; \
+	else \
+		echo "Cloning MMT repository into $(MMT_DIR)..."; \
+		git clone $(MMT_REPO) $(MMT_DIR); \
+	fi
 
 #################################################################################
 # Self Documenting Commands                                                     #

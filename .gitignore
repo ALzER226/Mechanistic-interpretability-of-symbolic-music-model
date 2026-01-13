@@ -1,5 +1,14 @@
-# Data
-/data/
+# Project directories
+/data/activations/*
+/data/base/*
+/models/*
+/reports/*
+/mmt/
+
+!/data/activations/.gitkeep
+!/data/base/.gitkeep
+!/models/.gitkeep
+!/reports/.gitkeep
 
 # Mac OS-specific storage files
 .DS_Store
@@ -129,6 +138,11 @@ ipython_config.py
 .pdm-python
 .pdm-build/
 
+# pixi
+#   pixi.lock should be committed to version control for reproducibility
+#   .pixi/ contains the environments and should not be committed
+.pixi/
+
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
 __pypackages__/
 
@@ -147,6 +161,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.idea/
 
 # Spyder project settings
 .spyderproject

@@ -1,15 +1,30 @@
-name: thesis
+name: music_interpret
 channels:
-  - defaults
+  - conda-forge
+  - pytorch
 dependencies:
-  - python=3.12
-  - tqdm
+  - python=3.9
+  - jupyterlab=3.3.4
+  - ffmpeg=4.3.1
+  - fluidsynth=2.2.5
+  - pip=22.0.4
+  - numpy=1.22.3
+  - scipy=1.8.0
+  - matplotlib=3.5.1
+  - mkl=2024.0
+  - tqdm=4.64.0
+  - scikit-learn=1.0.2
+  - cudatoolkit=10.2
+  - pytorch::pytorch=1.11.0
+  - tensorboard=2.11.*
+  - pandas
+  - protobuf=3.20.3
   - typer
-  - pytest
   - loguru
-  - numpy
-  - ipython
-  - jupyterlab
-  - notebook
   - ruff
-prefix: /home/alzer/anaconda3/envs/thesis
+  - pip:
+    - git+https://github.com/salu133445/muspy@main#egg=muspy
+    - x-transformers==0.25.9
+    - mkdocs
+    - mkdocs-material
+    - mkdocstrings[python]

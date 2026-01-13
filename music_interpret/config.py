@@ -6,20 +6,21 @@ from loguru import logger
 # Load environment variables from .env file if it exists
 load_dotenv()
 
-# Paths
+# Base paths
 PROJ_ROOT = Path(__file__).resolve().parents[1]
-logger.info(f"PROJ_ROOT path is: {PROJ_ROOT}")
+logger.debug(f"PROJ_ROOT path is: {PROJ_ROOT}")
 
 DATA_DIR = PROJ_ROOT / "data"
-RAW_DATA_DIR = DATA_DIR / "raw"
-INTERIM_DATA_DIR = DATA_DIR / "interim"
-PROCESSED_DATA_DIR = DATA_DIR / "processed"
-EXTERNAL_DATA_DIR = DATA_DIR / "external"
+MODEL_DIR = PROJ_ROOT / "models"
 
-MODELS_DIR = PROJ_ROOT / "models"
+# Checkpoints access paths
+BASE_MODEL_DIR = MODEL_DIR
+
+# Data access paths
+BASE_DATA_DIR = DATA_DIR / "base"
+ACTIVATION_DIR = DATA_DIR / "activations"
 
 REPORTS_DIR = PROJ_ROOT / "reports"
-FIGURES_DIR = REPORTS_DIR / "figures"
 
 # If tqdm is installed, configure loguru with tqdm.write
 # https://github.com/Delgan/loguru/issues/135
